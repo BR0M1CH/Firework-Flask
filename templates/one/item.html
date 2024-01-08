@@ -1,0 +1,126 @@
+{% extends 'index.html' %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/item.css">
+    <link rel="stylesheet" href="/static/styles/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="item_wrapper">
+        <!----------------------------------Левая часть (медиа, описание)------------------------------->
+        <section class="item_media">
+            <h1 class="item_name">{{item.name}}</h1>
+            <div class="swap_wrapper">
+                <label id="photo" class="red">
+                    <input type="radio" name="content-type" value="photo" checked onclick="showPhoto(this)">
+                    Фото
+                </label>
+                <label id="video">
+                    <input type="radio" id="content-type" value="video" onclick="showVideo(this)">
+                    Видео
+                </label>
+            </div>
+            <div class="media_wrapper">
+                <img src="{{item.picture}}" alt="" id="modal_img">
+                <iframe src="{{item.video}}" frameborder="0" id="modal_mp"></iframe>
+            </div>
+            <p class="item_description">{{ item.description }}</p>
+        </section>
+        <!----------------------------------Центральная часть (информация, покупка)------------------------------->
+        <section class="item_params">
+            <div class="purchase_wrapper">
+                <div class="purchase_block_wrapper">
+                    <div class="available_info_wrapper">
+                        {% if item.available==0 %}
+                            <div class="available_dot" style="background-color: rgb(196, 0, 0);"></div>
+                            <p class="text" style="width: fit-content; text-wrap: nowrap;">Нет в наличии</p>
+                        {% elif item.available < 5 %}
+                            <div class="available_dot" style="background-color: rgb(198, 198, 2);"></div>
+                            <p class="text" style="width: fit-content; text-wrap: nowrap;">Осталось мало</p>
+                        {% else %}
+                            <div class="available_dot" style="background-color: rgb(105, 158, 0);"></div>
+                            <p class="text" style="width: fit-content; text-wrap: nowrap;">Есть в наличии</p>
+                        {% endif %}
+                    </div>
+                    <div class="price">
+                        <p>Цена: {{ item.price }} ₽</p>
+                    </div>
+                </div>
+                <form class="purchase_block_wrapper">
+                    <div class="availability">
+                        <button type="button" class="quantity_btn minus"><svg viewBox="0 0 24 24" id="quantity_svg" xmlns="http://www.w3.org/2000/svg"><g id="Layer_39" data-name="Layer 39"><path d="m22 12a1 1 0 0 1 -1 1h-18a1 1 0 0 1 0-2h18a1 1 0 0 1 1 1z"/></g></svg></button>
+                        <input type="number" class="quantity" name='quantity' value="1" id="quantity_input">
+                        <button type="button" class="quantity_btn plus"><svg viewBox="0 0 24 24" id="quantity_svg" xmlns="http://www.w3.org/2000/svg"><g id="Layer_38" data-name="Layer 38"><path d="m22 12a1 1 0 0 1 -1 1h-8v8a1 1 0 0 1 -2 0v-8h-8a1 1 0 0 1 0-2h8v-8a1 1 0 0 1 2 0v8h8a1 1 0 0 1 1 1z"/></g></svg></button>
+                    </div>
+                    <button type="submit" class="buy">
+                        <svg id="buy_svg" viewBox="0 0 8.4666664 8.4666672" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g id="layer1" transform="translate(0 761.333)"><path id="path2286" d="m.52908274-760.80423v.52968h1.09967396l.751894 4.51911v.82165c-.305406.11107-.527101.40346-.527101.74518 0 .43524.357474.79271.792716.79271s.793234-.35747.793234-.79271c0-.0933-.01949-.18206-.04961-.26562h2.48202c-.03044.0838-.05168.17202-.05168.26562 0 .43524.359539.79271.794782.79271.435241 0 .793234-.35747.793234-.79271 0-.0934-.01995-.182-.05013-.26562h.579292v-.52968h-5.027083v-.52917h3.704683c.113268-.00023.213828-.0725.250116-.17983l1.058849-3.17552c.05656-.17081-.07018-.34705-.250113-.34778h-2.382284v.52916h2.013315l-.881073 2.6448h-3.552238l-.441836-2.6448h1.803509v-.52916h-1.891874l-.22841-1.36736c-.02136-.12697-.130661-.22009-.259416-.22066zm3.96823396 1.58802v1.56114c-.120269-.16854-.242686-.3355-.365352-.50229l-.427366.30851c.279472.39048.561907.77883.843359 1.16788.105677.14519.322205.14519.427883 0 .281873-.38937.562935-.77933.845943-1.16788l-.429947-.30851c-.122032.16846-.24366.33721-.365353.50591v-1.56476zm-1.851051 4.76198c.149259 0 .264067.11636.264067.26562s-.114808.26355-.264067.26355c-.149257 0-.265615-.11429-.265615-.26355s.116358-.26562.265615-.26562zm3.96875 0c.149259 0 .264067.11636.264067.26562s-.114808.26355-.264067.26355c-.14926 0-.265615-.11429-.265615-.26355s.116355-.26562.265615-.26562z" font-variant-ligatures="normal" font-variant-position="normal" font-variant-caps="normal" font-variant-numeric="normal" font-variant-alternates="normal" font-variant-east-asian="normal" font-feature-settings="normal" font-variation-settings="normal" text-indent="0" text-align="start" text-decoration-line="none" text-decoration-style="solid" text-decoration-color="rgb(0,0,0)" text-transform="none" text-orientation="mixed" white-space="normal" shape-padding="0" shape-margin="0" inline-size="0" isolation="auto" mix-blend-mode="normal" solid-color="rgb(0,0,0)" solid-opacity="1" vector-effect="none" paint-order="fill markers stroke"/></g></svg>
+                        <p id="buy_txt">В корзину</p>
+                    </button>
+                </form>
+            </div>
+            {% block params %}
+            {% endblock %}
+        </section>
+        <!----------------------------------Правая часть (сопуствующие товары)------------------------------->
+        <section class="item_right">
+            <h1 class="item_name">Не забудьте приобрести!</h1>
+            <div class="new_items_grid">
+                {% if items[0] %}
+                    {% for new_item in items[0] %}
+                        <a class="new_item_wrapper" href="/{{new_item.group}}s/{{new_item.group}}?id={{new_item.id}}">
+                            <img src="{{new_item.picture}}" alt="" class="new_item_picture">
+                            <p class="new_item_price">{{new_item.price}} ₽</p>
+                            <p class="new_item_description">{{new_item.name}}</p>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+                {% if items[1] %}
+                    {% for new_item in items[1] %}
+                        <a class="new_item_wrapper" href="/{{new_item.group}}s/{{new_item.group}}?id={{new_item.id}}">
+                            <img src="{{new_item.picture}}" alt="" class="new_item_picture">
+                            <p class="new_item_price">{{new_item.price}} ₽</p>
+                            <p class="new_item_description">{{new_item.name}}</p>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}
+
+{% block admin %}
+<details style="margin-top: 20vh;">
+    <summary>
+        Редактирование
+    </summary>
+    <form class="admin_wrapper" method="post">
+        {% for field in form %}
+            {% if field.name != 'action' %}
+            <div class="admin_field_wrapper">
+                {{ field(class_="admin_field", value=item[field.name]) }}
+                <p class="admin_desc">{{ field.description }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+        {{form.submit(class_='admin_field')}}
+        {{form.delete(class_='admin_field')}}
+    </form>
+</details>
+{% endblock %}
+
+<script>
+    function showPhoto(radioElement) {
+        document.querySelector('#modal_img').style.opacity="1"
+        document.querySelector('#modal_mp').style.opacity="0"
+        document.querySelector('#photo').classList.add('red')
+        document.querySelector('#video').classList.remove('red')
+    }
+    function showVideo(radioElement) {
+        document.querySelector('#modal_mp').style.opacity="1"
+        document.querySelector('#modal_img').style.opacity="0"
+        document.querySelector('#video').classList.add('red')
+        document.querySelector('#photo').classList.remove('red')
+    }
+</script>

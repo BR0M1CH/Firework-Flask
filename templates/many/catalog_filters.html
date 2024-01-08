@@ -1,0 +1,45 @@
+{% extends 'many/catalog.html' %}
+
+{% block filter %}
+<form action="" method="post" class="filter_wrapper">
+    
+    
+    <h1 class="filter_header"><svg version="1.1" class="svg_icon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 368.167 368.167" style="enable-background:new 0 0 368.167 368.167;" xml:space="preserve"><g><g><g><path d="M248.084,96.684h12c4.4,0,8-3.6,8-8c0-4.4-3.6-8-8-8h-12c-4.4,0-8,3.6-8,8C240.084,93.084,243.684,96.684,248.084,96.684 z"/><path d="M366.484,25.484c-2.8-5.6-8.4-8.8-14.4-8.8h-336c-6,0-11.6,3.6-14.4,8.8c-2.8,5.6-2,12,1.6,16.8l141.2,177.6v115.6 c0,6,3.2,11.2,8.4,14c2.4,1.2,4.8,2,7.6,2c3.2,0,6.4-0.8,9.2-2.8l44.4-30.8c6.4-4.8,10-12,10-19.6v-78.8l140.8-177.2 C368.484,37.484,369.284,31.084,366.484,25.484z M209.684,211.884c-0.8,1.2-1.6,2.8-1.6,4.8v81.2c0,2.8-1.2,5.2-3.2,6.8 l-44.4,30.8v-118.8c0-2.8-1.2-5.2-3.2-6.4l-90.4-113.6h145.2c4.4,0,8-3.6,8-8c0-4.4-3.6-8-8-8h-156c-0.4,0-1.2,0-1.6,0l-38.4-48 h336L209.684,211.884z"/></g></g></g></svg>
+        Фильтрация</h1>
+    {{filters.csrf_token}}
+
+
+    <details class="details_filter">
+        <summary class="summary_filter">
+            <svg version="1.1" id="rotate_elem" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><g id="_x31_0_34_"><g><path d="M604.501,134.782c-9.999-10.05-26.222-10.05-36.221,0L306.014,422.558L43.721,134.782 c-9.999-10.05-26.223-10.05-36.222,0s-9.999,26.35,0,36.399l279.103,306.241c5.331,5.357,12.422,7.652,19.386,7.296 c6.988,0.356,14.055-1.939,19.386-7.296l279.128-306.268C614.5,161.106,614.5,144.832,604.501,134.782z"/></g></g></g></svg>
+            Цена: 
+        </summary>
+        <div class="price_area">
+            {{filters.min_price_filter(class_="price_input", placeholder_="От: 0р")}}
+            {{filters.max_price_filter(class_="price_input", placeholder_= "До: {}р".format(filters.max_price_filter.description))}}
+        </div>
+    </details>
+
+
+    {% for field in filters %}
+    {% if field.name != 'min_price_filter' and field.name != 'max_price_filter' and field.name != 'csrf_token' and field.name !='action' %}
+    <details class="details_filter">
+        <summary class="summary_filter">
+            <svg version="1.1" id="rotate_elem" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><g id="_x31_0_34_"><g><path d="M604.501,134.782c-9.999-10.05-26.222-10.05-36.221,0L306.014,422.558L43.721,134.782 c-9.999-10.05-26.223-10.05-36.222,0s-9.999,26.35,0,36.399l279.103,306.241c5.331,5.357,12.422,7.652,19.386,7.296 c6.988,0.356,14.055-1.939,19.386-7.296l279.128-306.268C614.5,161.106,614.5,144.832,604.501,134.782z"/></g></g></g></svg>
+            {{field.label.text}}
+        </summary>
+        <div class="checkbox_area">
+            {% for subfield in field %}
+            <label class="container">{{subfield.label}}
+                {{ subfield() }}
+                <span class="checkmark"></span>
+            </label>
+            {% endfor %}
+        </div>
+    </details>
+    {% endif %}
+    {% endfor %}
+    {{filters.submit()}}
+
+</form>
+{% endblock %}

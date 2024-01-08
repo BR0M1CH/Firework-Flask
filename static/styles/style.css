@@ -1,0 +1,226 @@
+:root {
+    --color-red1: rgb(250, 0, 0);
+    --color-red2: rgb(235, 0, 0);
+    --color-red3: rgb(225, 0, 0);
+    --color-1: rgb(230, 230, 230);
+    --color-grey1: rgb(30, 30, 30);
+    --color-grey5: rgb(161, 161, 161);
+}
+
+* {
+    font-family: 'Montserrat';
+    margin: 0;
+}
+
+body {
+    background: url(/static/pictures/Confetti.png) top/100% repeat,
+                linear-gradient(rgb(230, 230, 230), rgb(230, 230, 230)) top/cover repeat;
+}
+    
+button {
+    cursor: pointer;
+}
+
+.first_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 128px;
+    background: linear-gradient(to bottom, rgb(240, 240, 240, 0.8) 80%, rgb(230, 230, 230, 0.7));
+}
+
+.gps_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.address_text {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(32, 45, 42);
+}
+
+.gps_btn {
+    width: fit-content;
+    height: 32px;
+    background-color: rgb(238, 39, 55);
+    color: rgb(230, 230, 230);
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+}
+
+.visible {
+    position: relative;
+    width: 100vw;
+}
+
+.gps_btn:hover {
+    background-color: rgb(220, 28, 50);
+}
+
+.gps_btn:active {
+    background-color: rgb(204, 26, 47);
+}
+
+.icon_red {
+    width: 32px;
+    height: 32px;
+    fill: rgb(238, 39, 55);
+}
+
+.phones_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.phone_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    padding-bottom: 4px;
+    border-bottom: 3px solid rgb(238, 39, 55);
+}
+
+.phone {
+    color: rgb(32, 45, 42);
+    text-decoration: none;
+}
+
+.phone:hover {
+    color: rgb(20, 26, 25);
+}
+.phone:active {
+    color: rgb(13, 18, 16);
+}
+
+.second_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+    left: 0;
+    width: 100%;
+}
+
+.header_ref {
+    height: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgb(32, 45, 42);
+    padding: 20px;
+
+}
+
+.header_ref:hover {
+    color: rgb(20, 26, 25);
+}
+
+#ref1 {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    background-color: rgb(249, 43, 43, 0.6);
+    transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#ref1:hover {
+    background-color: rgb(249, 43, 43, 0.9);
+}
+
+#ref2 {
+    background-color: rgb(249, 180, 43, 0.6);
+    transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#ref2:hover {
+    background-color: rgb(249, 180, 43, 0.9);
+}
+
+#ref3 {
+    background-color: rgba(10, 177, 16, 0.6);
+    transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#ref3:hover {
+    background-color: rgb(10, 177, 16, 0.9);
+}
+
+#ref4 {
+    background-color: rgb(43, 177, 249, 0.6);
+    transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#ref4:hover {
+    background-color: rgb(43, 177, 249, 0.9);
+}
+
+#ref5 {
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background-color: rgb(187, 43, 249, 0.6);
+    transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#ref5:hover {
+    background-color: rgb(187, 43, 249, 0.9);
+}
+
+.help_line_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 0;
+    width: 100%;
+}
+
+.help_line {
+    height: 4px;
+}
+
+.right_line {
+    background-color: rgb(187, 43, 249, 0.6);
+}
+
+.left_line {
+    background-color: rgb(249, 43, 43, 0.6);
+}
+
+.Logo {
+    width: 256px;
+    height: 128px;
+}
+
+.login_wrapper {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    padding-right: 8px;
+    border-right: 3px solid rgb(220, 28, 50);
+}
+
+.auth_ref {
+    font-weight: 600;
+    font-size: 16px;
+    color: rgb(32, 45, 42);
+    text-decoration: none;
+    border-bottom: 2px solid rgb(0, 0, 0, 0);
+    transition: 0.1s all linear;
+}
+
+.exit:hover {
+    border-bottom: 2px solid rgb(220, 28, 50);
+}
+
+.enter:hover {
+    border-bottom: 2px solid rgb(1, 150, 76);
+}

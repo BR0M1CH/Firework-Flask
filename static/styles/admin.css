@@ -1,0 +1,48 @@
+.admin_wrapper {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin_field {
+    background-color: rgb(32, 45, 42);
+    color: rgb(230, 230, 230);
+}
+
+input[type='text'].admin_field {
+    width: 256px;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: none;
+}
+
+input[type='number'].admin_field {
+    height: 32px;
+    width: 64px;
+    border-radius: 8px;
+    border: none;
+    padding: 4px 8px; 
+}
+
+input[type='submit'].admin_field {
+    width: fit-content;
+    color: rgb(230, 230, 230);
+    background-color: rgb(32, 45, 42);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.admin_field_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.admin_desc {
+    color: rgb(32, 45, 42);
+    font-size: 16px;
+    font-weight: 400;
+}

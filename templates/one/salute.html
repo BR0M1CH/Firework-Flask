@@ -1,0 +1,7 @@
+{% extends 'one/item.html' %}
+{% block params %}
+<div class="param_wrapper"><p class="param_name">Количество выстрелов:</p>{{item.shoots}}</div>
+<div class="param_wrapper"><p class="param_name">Калибр:</p>{% for each in item.calibers %} {{each}}" {% endfor %}</div>
+<div class="param_wrapper"><p class="param_name">Длительность:</p> {{item.duration}} cекунд</div>
+<div class="param_wrapper"><p class="param_name">Высота:</p>до {{item.height}} метров</div>
+{% endblock %}

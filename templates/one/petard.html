@@ -1,0 +1,13 @@
+{% extends 'one/item.html' %}
+{% block params %}
+{% if item.packet %}
+    <div class="param_wrapper"><p class="param_name">Количество:</p>{{item.count}} шт</div>
+{% else %}
+    <div class="param_wrapper"><p class="param_name">Количество: Штучно</div>
+{% endif %}
+{% if item.flight %}
+    <div class="param_wrapper"><p class="param_name">Тип:</p>Летающая</div>
+{% else %}
+    <div class="param_wrapper"><p class="param_name">Тип: Наземная</div>
+{% endif %}
+{% endblock %}

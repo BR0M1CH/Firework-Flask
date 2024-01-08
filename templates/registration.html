@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/user.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <form class="auth_content" method="POST">
+        {{ form.csrf_token() }}
+        <h1 class="header">Регистрация</h1>
+        <div class="auth_wrapper">
+            <div class="auth_block">
+                {{ form.username(placeholder='Логин', autocomplete="off") }}
+                <svg version="1.1" id="Capa_1" class="icon_auth" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 415.744 415.744" style="enable-background:new 0 0 415.744 415.744;" xml:space="preserve"><g><g><path d="M207.872,0c-53.76,0-97.28,43.52-97.28,97.28s43.52,97.28,97.28,97.28s97.28-43.52,97.28-97.28S261.632,0,207.872,0z"/></g></g><g><g><path d="M245.76,205.824h-75.776c-76.288,0-138.24,61.952-138.24,138.24v56.32c0,8.704,6.656,15.36,15.36,15.36H368.64 c8.704,0,15.36-6.656,15.36-15.36v-56.32C384,267.776,322.048,205.824,245.76,205.824z"/></g></g></svg>
+            </div>
+            {% for error in form.username.errors %}
+            <p class="exception">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="auth_wrapper">
+            <div class="auth_block">
+                {{ form.password(placeholder='Пароль', autocomplete="off") }}
+                <svg version="1.1" id="Capa_1" class='icon_auth' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve"><g><g><path d="M248.533,192c-17.6-49.707-64.853-85.333-120.533-85.333c-70.72,0-128,57.28-128,128s57.28,128,128,128 c55.68,0,102.933-35.627,120.533-85.333h92.8v85.333h85.333v-85.333h42.667V192H248.533z M128,277.333 c-23.573,0-42.667-19.093-42.667-42.667S104.427,192,128,192c23.573,0,42.667,19.093,42.667,42.667S151.573,277.333,128,277.333z"/></g></g></svg>                
+            </div>
+            {% for error in form.password.errors %}
+            <p class="exception">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="auth_wrapper">
+            <div class="auth_block">
+                {{ form.repeat_password(placeholder='Повторите пароль', autocomplete="off") }}
+                <svg version="1.1" id="Capa_1" class='icon_auth' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve"><g><g><path d="M248.533,192c-17.6-49.707-64.853-85.333-120.533-85.333c-70.72,0-128,57.28-128,128s57.28,128,128,128 c55.68,0,102.933-35.627,120.533-85.333h92.8v85.333h85.333v-85.333h42.667V192H248.533z M128,277.333 c-23.573,0-42.667-19.093-42.667-42.667S104.427,192,128,192c23.573,0,42.667,19.093,42.667,42.667S151.573,277.333,128,277.333z"/></g></g></svg>                
+            </div>
+            {% for error in form.repeat_password.errors %}
+            <p class="exception">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {{ form.submit() }}
+    </form>
+{% endblock %}

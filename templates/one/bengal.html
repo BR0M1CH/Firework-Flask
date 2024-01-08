@@ -1,0 +1,7 @@
+{% extends 'one/item.html' %}
+{% block params %}
+<div class="param_wrapper"><p class="param_name">Длина:</p>{{item.length}}</div>
+<div class="param_wrapper"><p class="param_name">Цвет:</p>{{item.colors}}</div>
+<div class="param_wrapper"><p class="param_name">В пачке:</p> {{item.count}} шт</div>
+<div class="param_wrapper"><p class="param_name">Продолжительность:</p>{{item.duration}} секунд</div>
+{% endblock %}

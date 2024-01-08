@@ -1,0 +1,6 @@
+flask
+requests
+wtforms
+flask_wtf
+flask-login
+werkzeug

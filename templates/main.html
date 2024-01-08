@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
+{% endblock %}
+
+{% block content %}
+<h1 class="header_cata">Каталог</h1>
+<div class="catalog">
+    <button class="item_wrapper" onclick="window.location.href = '/salutes'">
+        <img src="/static/pictures/Icons/Salut.png" alt="logo" class="item_picture">
+        <p class="item_name">Салюты</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/super-salutes'">
+        <img src="/static/pictures/Icons/SuperSalut.png" alt="" class="item_picture">
+        <p class="item_name">Супер-Салюты</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/roman-candles'">
+        <img src="/static/pictures/Icons/Roman.png" alt="" class="item_picture">
+        <p class="item_name">Римские Свечи</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/fountains'">
+        <img src="/static/pictures/Icons/Fountain.png" alt="" class="item_picture">
+        <p class="item_name">Фонтаны</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/bengals'">
+        <img src="/static/pictures/Icons/Bengal.png" alt="" class="item_picture">
+        <p class="item_name">Бенгальские Свечи</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/pneumo'">
+        <img src="/static/pictures/Icons/Pneumo.png" alt="" class="item_picture">
+        <p class="item_name">Пневмохлопушки</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/petards'">
+        <img src="/static/pictures/Icons/Petards.png" alt="" class="item_picture">
+        <p class="item_name">Петарды</p>
+    </button>
+    <button class="item_wrapper" onclick="window.location.href = '/smokes'">
+        <img src="/static/pictures/Icons/Smoke.png" alt="" class="item_picture">
+        <p class="item_name">Цветные дымы</p>
+    </button>
+</div>
+{% endblock %}

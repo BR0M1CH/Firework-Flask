@@ -1,0 +1,185 @@
+.auth_content {
+    margin: 64px auto;
+    padding: 24px 48px;
+    border-radius: 24px;
+    box-shadow: 0 0 8px rgb(0,0,0,0.4);
+    background-color: rgb(215, 215, 215, 0.9);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: max-content;
+}
+
+.header {
+    font-size: 32px;
+    font-weight: 600;
+    color: rgb(32, 45, 42);
+}
+
+.exception {
+    color: red;
+    font-size: 14px;
+}
+
+.auth_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.icon_auth {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background: rgb(200, 200, 200, 0.9);
+    transition: 0.1s all linear;
+    fill: rgb(32, 45, 42);
+    border-bottom: 2px solid rgb(200, 200, 200, 0.9);
+}
+
+input[type=number],
+input[type=password] {
+    height: 32px;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 4px 0;
+    margin-left: 8px;
+    background-color: rgb(0,0,0,0);
+    outline: none;
+    outline-offset: 0;
+    border: none;
+    border-bottom: 2px solid rgb(200, 200, 200);
+    transition: 0.1s all linear;
+    color: rgb(32, 45, 42);
+    width: 270px;
+}
+
+input[type=number]:focus,
+input[type=password]:focus {
+    outline: none;
+    outline-offset: 0;
+    border-bottom: 2px solid rgb(1, 150, 76);
+}
+
+input[type=number]:focus ~ .icon_auth,
+input[type=password]:focus ~ .icon_auth {
+    background: rgb(1, 150, 76);
+    fill: rgb(210, 210, 210);
+    border-bottom: 2px solid rgb(1, 150, 76);
+}
+
+input[type=submit] {
+    background-color: rgb(0, 164, 81);
+    border: none;
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(1, 150, 76);
+}
+
+input[type=submit]:active {
+    background-color: rgb(2, 141, 69);
+}
+
+
+.auth_block {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 320px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: rgb(32, 45, 42);
+    font-weight: 500;
+    margin-right: 8px;
+  }
+  
+  /* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+  /* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: rgb(0, 0, 0, 0);
+    border: 2px solid rgb(2, 141, 69);
+    border-radius: 4px;
+}
+  
+  /* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: rgb(205, 205, 205, 0.9);
+}
+  
+  /* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: rgb(0, 0, 0, 0);
+}
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+  /* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 3px;
+    top: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(2, 141, 69);
+    border-radius: 5px;
+}
+
+.submit_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+}
+
+.flash {
+    color: rgb(32, 45, 42);
+    font-weight: 500;
+    font-size: 600;
+}

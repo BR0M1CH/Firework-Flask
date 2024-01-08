@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/catalog.css">
+    <link rel="stylesheet" href="/static/styles/filter.css">
+    <link rel="stylesheet" href="/static/styles/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1 class="header_cata">{{ header }}</h1>
+<section class="userspace">
+    {% block filter %}
+    {% endblock %}
+    <div class="catalog">
+        {% for item in response %}
+        <a class="item_wrapper" href="/{{item.group}}s/{{item.group}}?id={{item.id}}" target="_blank">
+            <div class="picture_wrapper">
+                <img src="{{item.picture}}" alt="" class="item_img">
+            </div>
+            <div class="text_wrapper">
+                <p class="item_text_big">{{ item.name }}</p>
+                <p class="item_text_big gold" style="font-size: 28px;">{{ item.price }} ₽</p>
+                <p class="item_text">{% autoescape false %}{{item.text}}{% endautoescape %}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block admin %}
+<details style="margin-top: 20vh;">
+    <summary>
+        Добавление
+    </summary>
+    <form class="admin_wrapper" method="post">
+        {% for field in form %}
+        <div class="admin_field_wrapper">
+            {{ field(class_="admin_field") }}
+            <p class="admin_desc">{{ field.description }}</p>
+        </div>
+        {% endfor %}
+    </form>
+</details>
+{% endblock %}
