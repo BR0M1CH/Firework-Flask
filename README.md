@@ -1,3 +1,7 @@
+Превью (нажмите, чтобы увидеть видео)
+
+[![Превью](./media/Catalog.png)](https://drive.google.com/file/d/1GWtHLzcGczuRpoMFg2XQbXKbThWZGSo9/view?usp=sharing "Click to see video")
+
 # I: main.py
 
 Файл main.py представляет ключевую реализацию рендеринга страниц, маршрутизации и инициализации самого приложения.
