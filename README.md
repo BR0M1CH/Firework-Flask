@@ -5,7 +5,7 @@
 Для описания всех "товаров" существует файл *items.py*, к которому вернемся позже. Базово все большинство действий с объектами на самом высоком уровне описаны в двух функциях: *item()* и *items()*
 
 Функция *item()*:
-```
+```python
 ref = f"{Class.ref_api}{request.args.get('id')}"
     form = Class.red_form()
     if request.method == 'GET':
@@ -28,10 +28,10 @@ ref = f"{Class.ref_api}{request.args.get('id')}"
 Служит для описания действий над одним предметом (товаром) и используется тогда, когда пользователь перешел на страницу товара. Определяется метод запроса, если это *GET*, то функция отправит запрос микросервису на FastAPI, который подтянет с MongoDB все данные о конкретном товаре, если же запрос *POST*, то функция выяснит какое действие совершается: Редактирование или Удаление товара **(To-do: добавить добавление в корзину)**.
 В зависимости от действия отправляется put или delete запрос в тот же FastAPI, который является "распределительным центром" всей системы.
 
-![Пример отрисовки страницы товара](https://i.yapx.ru/W9Njq.png "Страница с салютом")
+![Пример отрисовки страницы товара](./media/single_1.png "Страница с салютом")
 
 Функция *items()*:
-```
+```python
 def items(Class, header, request):
     form = Class.form()
     filters = Class.filter()
@@ -58,7 +58,7 @@ def items(Class, header, request):
 
 В зависимости от выбранного действия отправляется запрос по соответствующему адресу.
 
-![Пример отрисовки страницы товаров](https://i.yapx.ru/W9Nv4.png)
+![Пример отрисовки страницы товаров](./media/Catalog.png "Пример отрисовки каталога")
 
 Так же в файле *main.py* представлены маршруты к списку товаров и самим товарам, которые и вызывают одну из двух функций: *item()* или *items()* и маршруты авторизации, в которых нет явно прописанной логики валидации данных, она написана в файле *forms.py*
 
@@ -70,44 +70,46 @@ def items(Class, header, request):
 
     Создаётся одна мастер-форма, которая описывает все поля (характеристики) присущие каждому товару:
 
-    ```
+    ```python
     class MasterForm(FlaskForm):
-    name = StringField('name', description='Название')
 
-    description = StringField('description', description='Описание')
+        name = StringField('name', description='Название')
 
-    price = IntegerField('price', description='Цена')
+        description = StringField('description', description='Описание')
 
-    tax = IntegerField('tax', default=0, description='Скидка в %')
+        price = IntegerField('price', description='Цена')
 
-    visits = IntegerField('visits', default=1, description='Количество посещений')
+        tax = IntegerField('tax', default=0, description='Скидка в %')
 
-    sales = IntegerField('sales', default=1, description='Количество продаж')
+        visits = IntegerField('visits', default=1, description='Количество посещений')
 
-    available = IntegerField('available', default=1, description='Количество на складе')
+        sales = IntegerField('sales', default=1, description='Количество продаж')
 
-    visible = BooleanField('visible', default=True, description='Отображение')
+        available = IntegerField('available', default=1, description='Количество на складе')
 
-    video = StringField('video', default='https://www.youtube.com/embed/', description='Ссылка на видео')
+        visible = BooleanField('visible', default=True, description='Отображение')
+
+        video = StringField('video', default='https://www.youtube.com/embed/', description='Ссылка на видео')
     ```
 
     Список параметров для примера: название, описание, цена, скидка, видео и прочие х-ки.
 
     От этой мастер-формы будут наследоваться все дальнейшие формы для каждой категории товаров, ведь у них разные параметры: у салютов к примеру - количество залпов, у бенгальских огней - длина и т.д. и т.п.
 
-    ```
+    ```python
     class AddSalute(MasterForm):
-    picture = StringField('picture', default='/static/pictures/salutes/', description='Ссылка на картинку')
 
-    shoots = IntegerField('shoots', description='Количество выстрелов')
+        picture = StringField('picture', default='/static/pictures/salutes/', description='Ссылка на картинку')
 
-    calibers = StringField('calibers', description='Калибры, через запятую')
+        shoots = IntegerField('shoots', description='Количество выстрелов')
 
-    duration = IntegerField('duration', description='Длительность салюта')
+        calibers = StringField('calibers', description='Калибры, через запятую')
 
-    height = IntegerField('height', description='Высота')
+        duration = IntegerField('duration', description='Длительность салюта')
 
-    submit = SubmitField('Добавить', name='action', default='Add')
+        height = IntegerField('height', description='Высота')
+
+        submit = SubmitField('Добавить', name='action', default='Add')
     ```
 
     В конечном счете каждая форма будет содержать ряд параметров и кнопку *Добавить*. Но требуется большее: отображение кнопки Добавить в каталоге и отображение кнопок Редактировать и Удалить на странице товара. Для этого от этих классов форм унаследуется еще один класс, в который просто добавиться одно поле: удалить:
@@ -124,44 +126,49 @@ def items(Class, header, request):
 2. Формы авторизации:
 
     Авторизация
-    ```
+    ```python
     class AuthForm(FlaskForm):
-    username = IntegerField("Username", validators=[DataRequired(), UserNotInBase(), PhoneValidate()])
 
-    password = PasswordField("Password", validators=[DataRequired()])
+        username = IntegerField("Username", validators=[DataRequired(), UserNotInBase(), PhoneValidate()])
 
-    remember = BooleanField("Remember Me")
+        password = PasswordField("Password", validators=[DataRequired()])
 
-    submit = SubmitField("Войти")
+        remember = BooleanField("Remember Me")
+
+        submit = SubmitField("Войти")
     ```
+
+    ![Форма авторизаци](./media/auth.png "Форма авторизации")
     
+
     Регистрация
-    ```
+    ```python
     class RegForm(FlaskForm):
-    username = IntegerField("Username", validators=[DataRequired(), UserInBase(), PhoneValidate()])
 
-    password = PasswordField("Password", validators=[DataRequired()])
+        username = IntegerField("Username", validators=[DataRequired(), UserInBase(), PhoneValidate()])
 
-    repeat_password = PasswordField('Repeat_Password', validators=[DataRequired(), EqualTo('password', message='Пароли не совпадают')])
+        password = PasswordField("Password", validators=[DataRequired()])
 
-    submit = SubmitField("Зарегистрироваться")
+        repeat_password = PasswordField('Repeat_Password', validators=[DataRequired(), EqualTo('password', message='Пароли не совпадают')])
+
+        submit = SubmitField("Зарегистрироваться")
     ```
 
     Из особенностей в некоторых полях указаны самописные валидаторы, которые не дадут отправить некорректные данные
 
 3. Валидаторы
 
-    ```
+    ```python
     class UserNotInBase(object):        #for auth
 
-    def __init__(self): 
-    self.message = 'Пользователь с таким телефоном не зарегистрирован'
+        def __init__(self): 
+        self.message = 'Пользователь с таким телефоном не зарегистрирован'
 
-    def __call__(self, form, field):
-    print(requests.get(f'{api}/reg/{field.data}').json())
-        if not requests.get(f'{api}/reg/{field.data}').json():
-            raise StopValidation(self.message)
-        
+        def __call__(self, form, field):
+        print(requests.get(f'{api}/reg/{field.data}').json())
+            if not requests.get(f'{api}/reg/{field.data}').json():
+                raise StopValidation(self.message)
+            
 
     class UserInBase(object):           #for registration
 
@@ -184,6 +191,17 @@ def items(Class, header, request):
 
     Принцип работы валидатора основан на dunder-методе __call__, логика проста - описывать нет смысла
 
+    Важно: в шаблоне прописаны правила отображения форм: у пользователей есть поле permission, если оно не равно нулю - форма будет доступна к работе
+
+    ![Без авторизации](./media/without_auth.png "Без авторизации (снизу пусто)")
+
+    ![С авторизацией](./media/with_auth.png "снизу появилась плашка формы")
+
+    ![Форма добавления](./media/add_form.png "Форма добавления")
+
+    ![Форма редактирования](./media/redact_form.png "Форма редактирования")
+    В форме редактирования value (default) заранее прописаны значениями, взятыми из словаря объекта
+
 # III: filters.py
 
 Фильтры представляют собой обычные классы, с наследованием от FlaskForm, единственная особенность, на которую стоит обратить внимание - для удобной отрисовки тем же циклом сделаны следующие шаги:
@@ -198,7 +216,7 @@ def items(Class, header, request):
     |Кнопка отфильтровать|
 
 Пример фильтра бенгальских свечей:
-```
+```python
 class FilterBengal(FlaskForm):
     #Да, криво перевел комплектацию
 
@@ -226,7 +244,7 @@ class FilterBengal(FlaskForm):
 Если файл *main.py* был центром принятия решений в рамках данного приложение - файл *items.py* будет все решения реализовывать. В этом файле описаны сущности (товары), пользователи и их правила поведения.
 
 Создаётся мастер-класс Item, который соберет в себя все методы, которые буду использовать другие классы:
-```
+```python
 class Item(object):
 
     api = 'http://restfastapi:8000' #ссылка на контейнер с FastAPI
@@ -303,9 +321,10 @@ class Item(object):
 Важно: send_filter и parse_filter являются методами класса, для их успешной работы не нужно создавать объект класса, они не зависят от объектов. 
 
 После описание мастер-класса можно приступить к описание дочерних классов, пример класса:
-```
+```python
 
 class Salute(Item):
+
     ref_api = f"{api}/salutes/"
 
     params_list = ['name', 'calibers', 'description', 'picture', 'video']

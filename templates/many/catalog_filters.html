@@ -21,7 +21,7 @@
     </details>
 
 
-    {% for field in filters %}
+{% for field in filters %}
     {% if field.name != 'min_price_filter' and field.name != 'max_price_filter' and field.name != 'csrf_token' and field.name !='action' %}
     <details class="details_filter">
         <summary class="summary_filter">
@@ -38,8 +38,8 @@
         </div>
     </details>
     {% endif %}
-    {% endfor %}
-    {{filters.submit()}}
+{% endfor %}
+{{filters.submit()}}
 
 </form>
 {% endblock %}

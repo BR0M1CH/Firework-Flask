@@ -29,17 +29,19 @@
 {% endblock %}
 
 {% block admin %}
-<details style="margin-top: 20vh;">
-    <summary>
-        Добавление
-    </summary>
-    <form class="admin_wrapper" method="post">
-        {% for field in form %}
-        <div class="admin_field_wrapper">
-            {{ field(class_="admin_field") }}
-            <p class="admin_desc">{{ field.description }}</p>
-        </div>
-        {% endfor %}
-    </form>
-</details>
+    {% if current_user.permission %}
+        <details style="margin-top: 20vh;">
+            <summary>
+                Добавление
+            </summary>
+            <form class="admin_wrapper" method="post">
+                {% for field in form %}
+                <div class="admin_field_wrapper">
+                    {{ field(class_="admin_field") }}
+                    <p class="admin_desc">{{ field.description }}</p>
+                </div>
+                {% endfor %}
+            </form>
+        </details>
+    {% endif %}
 {% endblock %}

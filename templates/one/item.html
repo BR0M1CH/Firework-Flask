@@ -91,24 +91,27 @@
 {% endblock %}
 
 {% block admin %}
-<details style="margin-top: 20vh;">
-    <summary>
-        Редактирование
-    </summary>
-    <form class="admin_wrapper" method="post">
-        {% for field in form %}
-            {% if field.name != 'action' %}
-            <div class="admin_field_wrapper">
-                {{ field(class_="admin_field", value=item[field.name]) }}
-                <p class="admin_desc">{{ field.description }}</p>
-            </div>
-            {% endif %}
-        {% endfor %}
-        {{form.submit(class_='admin_field')}}
-        {{form.delete(class_='admin_field')}}
-    </form>
-</details>
+    {% if current_user.permission %}
+    <details style="margin-top: 20vh;">
+        <summary>
+            Редактирование
+        </summary>
+        <form class="admin_wrapper" method="post">
+            {% for field in form %}
+                {% if field.name != 'action' %}
+                <div class="admin_field_wrapper">
+                    {{ field(class_="admin_field", value=item[field.name]) }}
+                    <p class="admin_desc">{{ field.description }}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {{form.submit(class_='admin_field')}}
+            {{form.delete(class_='admin_field')}}
+        </form>
+    </details>
+    {% endif %}
 {% endblock %}
+
 
 <script>
     function showPhoto(radioElement) {
